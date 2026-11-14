@@ -1,8 +1,8 @@
 .DS_Store
 .directory
 Thumbs.db
-/prototipos/
-/vendor/
-/src/
-/private/
-/assets/
+**/prototipos/
+**/vendor/
+**/src/
+**/private/
+**/assets/
