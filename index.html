@@ -1,0 +1,133 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Casa Térmica · Confort y mejoras</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css?v=aura-production-16"><link rel="stylesheet" href="prototipos/aura-casa.css?v=aura-production-16"><link rel="preload" href="assets/icons.svg" as="fetch" crossorigin="anonymous"></head><body class="prototype prototype-aura" data-climate="winter">
+
+  <div class="aura-app">
+    <aside class="aura-rail">
+      <a class="aura-mark" href="#inicio" aria-label="Casa Térmica">a.</a>
+      <div class="aura-rail-rule"></div>
+      <nav aria-label="Navegación principal"><button id="simulator-tab" data-view="simulator" aria-selected="true" role="tab" aria-controls="simulator" class="active" title="Simulador"><span>⌂</span><small>Casa</small></button><button id="impact-tab" data-view="impact" aria-selected="false" role="tab" aria-controls="impact" title="Impacto en la cuenta"><span>↗</span><small>Cuenta</small></button><button type="button" data-scroll-target="mapa" aria-controls="mapa" title="Ver mapa térmico"><span>◌</span><small>Mapa</small></button><button type="button" data-scroll-target="mejoras" aria-controls="mejoras" title="Ver mejoras"><span>✳</span><small>Mejoras</small></button></nav>
+      <div class="aura-rail-grow"></div><button class="aura-rail-link" id="budget-tab" data-view="budget" role="tab" aria-selected="false" aria-controls="budget" title="Presupuesto">＄</button><button class="aura-rail-link" id="report-tab" data-view="report" role="tab" aria-selected="false" aria-controls="report" title="Informe">▤</button><span class="aura-profile">F</span>
+    </aside>
+
+    <main class="aura-main" id="inicio">
+      <header class="aura-topbar"><a class="aura-wordmark" href="#inicio"><span class="wordmark-icon">◈</span> aura<span>casa</span></a><div class="aura-tabs" role="group" aria-label="Escenario de observación"><button type="button" data-climate="winter" aria-pressed="true"><i class="cold-dot"></i> Invierno</button><button type="button" data-climate="summer" aria-pressed="false"><i class="hot-dot"></i> Verano</button></div><div class="aura-top-actions"><span class="aura-location"><span>⌖</span> La Araucanía</span><button type="button" id="budget-top-link">Costos <b>↗</b></button><button type="button" id="report-top-link">Informe <b>↗</b></button><span class="aura-avatar" aria-label="Perfil local de demostración" title="Vivienda de ejemplo">F</span></div></header>
+
+      <section id="simulator" class="view-panel" role="tabpanel" aria-labelledby="simulator-tab">
+      <section class="aura-title-row" id="modelo"><div><div class="aura-eyebrow"><span></span> CONFORT TÉRMICO EN CASA</div><h1>Entiende tu casa.<br><em>Mejora cómo se siente.</em></h1><p>Una vista sencilla de las zonas que dejan escapar el calor y de cómo puedes mejorarlas.</p></div><div class="aura-condition"><span class="condition-orb" id="weather-symbol">❄</span><div><small id="weather-title">Día frío · condición de ejemplo</small><strong><span id="outside-temp">4°</span> <i>afuera</i><b>→</b> <span id="inside-temp">20°</span> <i>adentro</i></strong></div></div></section>
+
+      <section class="aura-house-config" aria-labelledby="house-config-title">
+        <div class="house-config-copy"><span class="aura-overline">ANTES DE EMPEZAR · TU VIVIENDA</span><h2 id="house-config-title">Armemos una casa parecida</h2><p>Las habitaciones se representan de 3 × 3 m. El espacio restante queda como sala o pasillo. Cocina y baño se omiten en esta demo.</p></div>
+        <div class="house-config-controls">
+          <label>Habitaciones<select id="house-bedroom-count"><option value="1">1 habitación</option><option value="2">2 habitaciones</option><option value="3" selected>3 habitaciones</option><option value="4">4 habitaciones</option></select></label>
+          <label>Superficie total<input id="house-floor-area" type="number" min="30" max="180" step="1" value="54"><small>m² aprox.</small></label>
+          <div class="house-presets" role="group" aria-label="Tamaños de ejemplo"><span>O usa un ejemplo</span><button type="button" data-house-preset="compact">36 m² · 2 hab.</button><button type="button" data-house-preset="family">54 m² · 3 hab.</button><button type="button" data-house-preset="roomy">72 m² · 3 hab.</button><button type="button" data-house-preset="fourRoom">54 m² · 4 hab.</button></div>
+          <button type="button" id="generate-simulation" class="house-generate-button"><span>✦</span> Generar simulación</button>
+        </div>
+        <div class="house-insulation-row"><span>Prueba aislaciones</span><div id="house-insulation-toggles" class="house-insulation-toggles" role="group" aria-label="Aislaciones para la simulación"></div></div>
+        <div class="house-config-result" aria-live="polite"><span class="house-config-icon">⌂</span><span><strong id="house-config-summary">3 habitaciones · 54 m² · 4 ventanas</strong><small id="house-config-detail">Casa familiar de referencia · sala aprox. 27 m²</small></span><span class="house-config-status" id="simulation-status">Modelo listo</span></div>
+      </section>
+
+      <div class="aura-workspace">
+        <section class="aura-house-wrap" aria-labelledby="aura-house-title">
+          <div class="aura-house-top"><div><span class="aura-overline">01 <i>/</i> MODELO DE VIVIENDA</span><h2 id="aura-house-title">La casa, por fuera y por dentro</h2></div><div class="aura-camera" role="group" aria-label="Vistas del modelo"><button type="button" data-house-view="front" aria-pressed="false">Frente</button><button type="button" data-house-view="side" aria-pressed="false">Costado</button><button type="button" data-house-view="interior" aria-pressed="false" title="Ver habitaciones sin techo">Interior</button><button type="button" data-house-view="layers" aria-pressed="false" title="Corte isométrico para ver las capas">Capas</button><button type="button" id="reset-house-view" aria-label="Restablecer perspectiva">⟳</button></div></div>
+          <div class="aura-stage" data-climate="winter"><div class="aura-atmosphere"></div><div class="aura-stage-grid" aria-hidden="true"></div><div class="aura-rings" aria-hidden="true"><span></span><span></span><span></span></div><div id="house-3d-canvas" class="house-canvas" role="img" aria-label="Modelo tridimensional interactivo de una vivienda. Arrastra para girar y usa la rueda para acercar"></div><div class="aura-stage-chip"><span class="chip-light"></span><span id="scene-label">ESCENA DE INVIERNO · DÍA FRÍO</span></div><div class="aura-stage-help">ARRASTRA PARA GIRAR <span>·</span> RUEDA PARA ACERCAR</div><div class="aura-stage-scale">MAQUETA ILUSTRATIVA <i id="stage-scale-value">09 × 06 M</i></div><div class="aura-stage-corner">AURA <b>01</b></div></div>
+          <div class="aura-house-footer"><span><i id="flow-dot" class="legend-warm"></i><span id="flow-direction">Calor sale · frío entra</span></span><span class="aura-foot-note">FLUJO CONCEPTUAL · NO MEDICIÓN</span></div>
+        </section>
+
+        <aside class="aura-side-panel">
+          <section class="aura-snapshot"><div class="aura-snapshot-head"><div><span class="aura-overline">02 <i>/</i> RESUMEN</span><h2>¿Cómo se siente la casa?</h2></div><span class="snapshot-menu">EJEMPLO</span></div><div class="comfort-row"><div class="comfort-score"><strong id="analysis-number">72</strong><span>/100</span><small>índice de ejemplo</small></div><div class="comfort-copy"><strong id="analysis-copy">El techo necesita más abrigo</strong><span id="analysis-subcopy">Revisa sus capas y opciones de mejora.</span></div></div><div class="comfort-track"><span class="comfort-fill"></span><i></i><i></i><i></i></div><div class="comfort-scale"><span>MENOS CONFORT</span><span>MÁS CONFORT</span></div></section>
+
+          <section class="aura-zones"><div class="aura-zones-head"><div><span class="aura-overline">03 <i>/</i> ENVOLVENTE TÉRMICA</span><h2>¿Qué zona revisamos?</h2></div><span class="zone-number">5 zonas</span></div><p>Elige una parte para ver qué puedes mejorar.</p><div id="component-select" class="component-list" role="group" aria-label="Seleccionar zona de la casa"></div><section id="component-panel" class="aura-detail" hidden>
+            <div class="aura-detail-head"><div><small>ZONA SELECCIONADA</small><strong id="selected-component-title">Elemento</strong></div><span id="component-detail-count" class="aura-detail-state">Sin mejoras</span></div>
+            <p class="aura-detail-intro">Lo que actives aquí cambia el modelo, el gráfico y el presupuesto.</p>
+            <details id="layers-disclosure" class="aura-detail-section"><summary><span>Capas de construcción</span><small id="layer-summary">Ver capas</small></summary><p class="aura-detail-hint">Marca una capa para mostrarla u ocultarla en la maqueta 3D.</p><div id="component-layers" role="group" aria-label="Capas de construcción"></div></details>
+            <details id="interventions-disclosure" class="aura-detail-section" open><summary><span>Mejoras para probar</span><small id="intervention-summary">0 activas</small></summary><p class="aura-detail-hint">Activa o quita opciones. Los costos son de referencia.</p><div id="component-interventions" role="group" aria-label="Mejoras disponibles"></div></details>
+          </section></section>
+
+          <section class="aura-room-condition"><div class="room-icon" id="room-icon">❄</div><div><small>ESCENA DE REFERENCIA</small><strong id="weather-subtitle">Interior 20° <i>·</i> Exterior 4°</strong><span id="flow-legend">El calor tiende a salir por cubierta y ventanas.</span></div><span class="room-signal"></span></section>
+        </aside>
+      </div>
+
+      <section class="aura-lower-grid">
+        <section class="aura-loss-panel" id="mapa"><div class="aura-panel-heading"><div><span class="aura-overline">04 <i>/</i> TRANSFERENCIA DE CALOR</span><h2 id="chart-title">¿Por dónde se escapa el calor?</h2><p id="chart-caption">Aporte por zona · pérdidas estimadas restantes: 100% del estado inicial.</p></div><span class="aura-info" title="El 100% representa la vivienda inicial. Las intervenciones reducen este indicador demostrativo." aria-label="El 100% representa la vivienda inicial; las intervenciones reducen el indicador demostrativo">i</span></div><div id="loss-chart" class="aura-loss-chart" aria-label="Indicador ilustrativo de transferencia de calor por zona"></div><div class="aura-chart-scale"><span>0 · MENOR APORTE</span><i></i><span id="chart-scale-max">Mayor zona inicial</span></div></section>
+        <section class="aura-improvements" id="mejoras"><div class="aura-panel-heading"><div><span class="aura-overline">05 <i>/</i> POSIBLES MEJORAS</span><h2>Pequeños pasos, más abrigo</h2><p>Elige una zona para ver ideas de mejora.</p></div><button type="button" id="budget-chart-link">Ver costos <b>↗</b></button></div><div class="improvement-list"><button type="button" data-component-choice="roof" aria-pressed="false"><span class="improvement-icon roof-icon">⌂</span><span><strong>Aislar la cubierta</strong><small>Probar aislación de cubierta</small></span><b>→</b></button><button type="button" data-component-choice="windows" aria-pressed="false"><span class="improvement-icon window-icon">▧</span><span><strong>Mejorar ventanas</strong><small>Probar vidrio doble</small></span><b>→</b></button><button type="button" data-component-choice="doors" aria-pressed="false"><span class="improvement-icon door-icon">▯</span><span><strong>Sellar puertas</strong><small>Probar sellos para la puerta</small></span><b>→</b></button></div></section>
+      </section>
+
+      <details class="aura-dimensions"><summary><span>Personalizar dimensiones de la maqueta</span><b>＋</b></summary><form id="dimension-form" class="dimension-form"><label>Largo<input id="dim-length" name="length" type="number" min="3" max="20" step="0.5" value="8"></label><label>Ancho<input id="dim-width" name="width" type="number" min="3" max="15" step="0.5" value="6"></label><label>Alto<input id="dim-height" name="height" type="number" min="2" max="4" step="0.1" value="2.5"></label><label>Pendiente<input id="dim-pitch" name="roofPitch" type="number" min="15" max="45" step="5" value="30"></label><label>Ventana · ancho<input id="win-width" name="winWidth" type="number" min="0.5" max="3" step="0.1" value="1.2"></label><label>Ventana · alto<input id="win-height" name="winHeight" type="number" min="0.5" max="2.5" step="0.1" value="1"></label><label>Ventanas<input id="win-count" name="winCount" type="number" min="0" max="20" value="3"></label><label>Puerta · ancho<input id="door-width" name="doorWidth" type="number" min="0.7" max="1.5" step="0.1" value="0.9"></label><label>Puerta · alto<input id="door-height" name="doorHeight" type="number" min="1.8" max="2.5" step="0.1" value="2.1"></label><label>Puertas<input id="door-count" name="doorCount" type="number" min="0" max="10" value="1"></label></form></details>
+      </section>
+      <section id="impact" class="view-panel impact-page" role="tabpanel" aria-labelledby="impact-tab" hidden>
+        <header class="impact-heading"><div><span class="impact-kicker">TU CASA · ENERGÍA · FIN DE MES</span><h1>¿Cuánto abrigo<br><em>se nota en la cuenta?</em></h1><p>Explora cómo una casa mejor aislada podría necesitar menos energía para mantenerse cómoda.</p></div><div class="impact-weather"><span id="impact-season-icon">❄</span><div><small>ESCENARIO ACTUAL</small><strong id="impact-season-name">Invierno</strong><span>Estimación ilustrativa</span></div></div></header>
+        <section class="impact-hero" aria-label="Ahorro mensual ilustrativo"><div class="impact-hero-copy"><span class="impact-kicker">SIMULACIÓN DE TU CUENTA</span><h2>Este mes podrías ahorrar</h2><div class="impact-savings"><strong id="impact-monthly-saving">$ 0</strong><span>/ mes</span></div><div class="impact-rate-display"><strong id="impact-saving-percent">0%</strong><span>menos en calefacción</span></div><p id="impact-saving-note">Activa mejoras en la casa para comparar el efecto estimado.</p></div><div class="impact-bill-compare"><div class="impact-bill-label"><span>CUENTA DE CALEFACCIÓN</span><span id="impact-reduction-label">0% menos</span></div><div class="impact-bill-bars"><div class="impact-bill-row"><span>Hoy</span><div><i class="bill-before"></i></div><strong id="impact-before">$ 90.000</strong></div><div class="impact-bill-row"><span>Con mejoras</span><div><i class="bill-after"></i></div><strong id="impact-after">$ 90.000</strong></div></div><div class="impact-bill-foot"><span>Simulación mensual</span><span id="impact-annual-saving">$ 0 al año</span></div></div></section>
+        <div class="impact-grid">
+          <section class="impact-panel impact-input-panel"><div class="impact-panel-heading"><span class="impact-number">01</span><div><h2>Parte desde tu boleta</h2><p>Escribe cuánto gastas en calefacción durante un mes frío normal.</p></div></div><label class="impact-input-label" for="impact-bill-input">Gasto mensual actual <span>CLP</span></label><div class="impact-input-wrap"><span>$</span><input id="impact-bill-input" type="number" min="10000" max="600000" step="5000" value="90000" inputmode="numeric"><small>aprox.</small></div><input id="impact-bill-range" class="impact-range" type="range" min="10000" max="300000" step="5000" value="90000" aria-label="Ajustar gasto mensual de calefacción"><div class="impact-range-labels"><span>$10 mil</span><span>$300 mil</span></div><div class="impact-house-fact"><span>⌂</span><p>Modelo actual<strong id="impact-house-summary">3 habitaciones · 54 m²</strong></p></div></section>
+          <section class="impact-panel impact-season-panel"><div class="impact-panel-heading"><span class="impact-number">02</span><div><h2>El año térmico</h2><p>El gasto sube cuando el clima exige más calefacción.</p></div></div><div id="impact-year-chart" class="impact-year-chart" role="img" aria-label="Proyección ilustrativa del gasto mensual durante el año"></div><div class="impact-chart-legend"><span><i></i> Sin mejoras</span><span><i></i> Con mejoras</span></div></section>
+          <section class="impact-panel impact-zones-panel"><div class="impact-panel-heading"><span class="impact-number">03</span><div><h2>¿Dónde se va el calor?</h2><p>La casa inicial comparada con tus mejoras activas.</p></div></div><div id="impact-zones-chart" class="impact-zones-chart"></div><div class="impact-note">Las barras representan transferencia térmica relativa, no consumo medido.</div></section>
+          <section class="impact-panel impact-explainer"><span class="impact-kicker">CÓMO LEER ESTA DEMO</span><h2>Menos pérdidas.<br>Menos energía para calefaccionar.</h2><p>La simulación toma las zonas de la vivienda y las mejoras elegidas para estimar cuánto podría bajar la parte de calefacción de la cuenta.</p><div class="impact-assumption"><span>i</span><p><strong>Una aproximación visual</strong>El resultado depende del clima, las horas de uso y el tipo de calefacción. No es una cotización ni una promesa de ahorro.</p></div><button type="button" id="impact-back-simulator">← Volver a probar mejoras</button></section>
+        </div>
+      </section>
+      <section id="budget" class="view-panel budget-page" role="tabpanel" aria-labelledby="budget-tab" hidden>
+        <header class="budget-page-heading">
+          <div>
+            <span class="budget-overline">TU CASA · COSTOS DE MEJORA</span>
+            <h1>Un presupuesto claro.</h1>
+            <p>Revisa qué incluye tu selección, compara alternativas o ajusta los valores de referencia.</p>
+          </div>
+          <button class="budget-back-link" type="button" id="budget-return-home">← Volver a la casa</button>
+        </header>
+
+        <section class="budget-section budget-alternatives-section">
+          <header class="budget-section-heading">
+            <div><span class="budget-overline">01 · PUNTOS DE PARTIDA</span><h2>Elige por dónde empezar</h2><p>Compara una mejora puntual, una solución equilibrada o una renovación más completa. Puedes ajustar cada opción después.</p></div>
+          </header>
+          <div id="scenario-comparison" class="budget-scenario-grid" role="list" aria-label="Puntos de partida para las mejoras"></div>
+        </section>
+
+        <section class="budget-summary" aria-label="Resumen del presupuesto">
+          <div class="budget-total-main">
+            <span>INVERSIÓN ESTIMADA</span>
+            <strong id="budget-total">$ 0</strong>
+            <small id="budget-total-note">Elige una mejora para empezar.</small>
+          </div>
+          <div class="budget-summary-breakdown">
+            <div><span>Materiales</span><strong id="budget-material-total">$ 0</strong></div>
+            <div><span>Mano de obra</span><strong id="budget-labor-total">$ 0</strong></div>
+            <div><span>Alternativa</span><strong id="budget-scenario-name">Sin mejoras elegidas</strong></div>
+          </div>
+        </section>
+
+        <section class="budget-section budget-cost-section">
+          <header class="budget-section-heading">
+            <div><span class="budget-overline">02 · DETALLE</span><h2>Qué estás incluyendo</h2><p>El total se actualiza cuando activas o quitas una mejora.</p></div>
+            <span class="budget-demo-tag">Valores de demostración</span>
+          </header>
+          <div id="cost-breakdown" class="budget-cost-list" aria-live="polite" aria-atomic="true"></div>
+        </section>
+
+        <section class="budget-reference-grid" aria-label="Datos usados para calcular">
+          <details class="budget-reference">
+            <summary><span><strong>Materiales y precios</strong><small>Consulta fichas y ajusta precio o cobertura.</small></span><b>＋</b></summary>
+            <div id="material-catalog" class="budget-material-list" role="list" aria-label="Materiales de referencia"></div>
+          </details>
+          <details class="budget-reference">
+            <summary><span><strong>Superficies consideradas</strong><small>Áreas estimadas con las dimensiones actuales.</small></span><b>＋</b></summary>
+            <div id="surface-calculator" class="budget-surface-table" aria-live="polite" aria-atomic="true"></div>
+          </details>
+        </section>
+      </section>
+      <section id="report" class="view-panel" role="tabpanel" aria-labelledby="report-tab" hidden>
+        <article class="ct-card report-content">
+          <header class="ct-card-header report-header ct-text-center"><h2 class="ct-text-2xl ct-font-bold ct-text-brand">Informe de mejoras térmicas</h2><p class="ct-text-sm ct-text-muted" id="report-meta"></p></header>
+          <div class="ct-card-body report-body">
+            <section class="report-section ct-mb-lg"><h3 class="ct-text-lg ct-font-semibold ct-mb-md ct-pb-sm ct-border-b ct-border-b--subtle">Vivienda analizada</h3><dl id="report-house-data" class="ct-grid ct-grid-2 ct-gap-md ct-gap-y-sm"></dl></section>
+            <section class="report-section ct-mb-lg"><h3 class="ct-text-lg ct-font-semibold ct-mb-md ct-pb-sm ct-border-b ct-border-b--subtle">Intervenciones seleccionadas</h3><ul id="report-interventions" class="ct-flex ct-flex-col ct-gap-sm"></ul></section>
+            <section class="report-section ct-mb-lg"><h3 class="ct-text-lg ct-font-semibold ct-mb-md ct-pb-sm ct-border-b ct-border-b--subtle">Costos estimados</h3><div id="report-costs" class="ct-flex ct-flex-col ct-gap-sm"></div></section>
+            <section class="report-section ct-mb-lg"><h3 class="ct-text-lg ct-font-semibold ct-mb-md ct-pb-sm ct-border-b ct-border-b--subtle">Prioridades y observaciones</h3><ul id="report-observations" class="ct-flex ct-flex-col ct-gap-sm"></ul></section>
+          </div>
+          <footer class="ct-card-footer ct-flex ct-flex-col ct-items-center ct-gap-md report-footer"><button id="print-report" class="ct-btn ct-btn-primary ct-btn-lg">Imprimir / Guardar como PDF</button><div class="ct-text-center ct-text-sm ct-text-muted" id="report-disclaimer"></div></footer>
+        </article>
+      </section>
+      <footer class="aura-footer aura-app-footer"><span>AURA CASA · CASA TÉRMICA</span><span>Indicadores ilustrativos; no equivalen a un diagnóstico técnico profesional.</span></footer>
+    </main>
+  </div>
+
+  <script type="module" src="src/main.js?v=ui-zones-01"></script>
+</body></html>

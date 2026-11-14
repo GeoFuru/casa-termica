@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Casa Viva · Exploración térmica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="prototipos.css?v=casaviva-04">
+</head>
+<body class="prototype prototype-warm" data-climate="winter">
+  <div class="warm-app">
+    <aside class="warm-sidebar">
+      <a class="warm-brand" href="#inicio"><span class="brand-house">⌂</span><span>casa<span class="brand-accent">viva</span><small>CONFORT QUE SE NOTA</small></span></a>
+      <div class="warm-nav-label">TU ESPACIO</div>
+      <nav class="warm-nav" aria-label="Navegación del prototipo"><a class="current" href="#modelo"><span>01</span> Mi casa</a><a href="#mapa"><span>02</span> Mapa de calor</a><a href="#zonas"><span>03</span> Zonas</a></nav>
+      <div class="warm-sidebar-note"><span class="weather-sun">☀</span><small>HOY EN LA ARAUCANÍA</small><strong>4° <em>frío</em></strong><p>Un buen punto de partida para pensar el abrigo de tu casa.</p></div>
+      <div class="warm-user"><span class="warm-avatar">F</span><span><strong>Casa de ejemplo</strong><small>Vivienda de referencia</small></span><b>⌄</b></div>
+    </aside>
+    <main class="warm-main" id="inicio">
+      <header class="warm-topbar"><div class="warm-crumb">MI CASA <span>/</span> <strong>EXPLORACIÓN</strong></div><div class="warm-top-right"><a class="warm-section-link" href="/?view=budget">Presupuesto ↗</a><a class="warm-section-link" href="/?view=report">Informe ↗</a><span class="warm-demo"><i></i> Modelo ilustrativo</span></div></header>
+      <section class="warm-heading" id="modelo"><div><div class="warm-overline"><span></span> DESCUBRE TU ENVOLVENTE</div><h1>¿Por dónde se va<br>el calor de tu casa?</h1><p>Gira la casa, elige un elemento y explora qué podrías mejorar.</p></div><div class="warm-scene-switch" role="group" aria-label="Escena térmica"><button type="button" data-climate="winter" aria-pressed="true"><span class="winter-symbol">❄</span> Día frío</button><button type="button" data-climate="summer" aria-pressed="false"><span class="summer-symbol">☀</span> Día caluroso</button></div></section>
+
+      <div class="warm-content-grid">
+        <section class="warm-house-panel" aria-labelledby="warm-house-title">
+          <div class="warm-house-head"><div><span class="warm-section-label">LA ENVOLVENTE</span><h2 id="warm-house-title">Tu casa, por fuera</h2></div><div class="warm-views" role="group" aria-label="Orientación de la casa"><button type="button" data-house-view="front" aria-pressed="false">Frente</button><button type="button" data-house-view="side" aria-pressed="false">Costado</button><button type="button" id="reset-house-view" aria-label="Restablecer vista">↻</button></div></div>
+          <div class="warm-stage" data-climate="winter"><div class="warm-stage-backdrop"></div><div class="warm-grid" aria-hidden="true"></div><div id="house-3d-canvas" class="house-canvas" role="img" aria-label="Casa 3D interactiva. Arrastra para girar y usa la rueda para acercar"></div><svg class="heat-arrows" viewBox="0 0 900 510" aria-hidden="true"><defs><linearGradient id="warm-flow" x1="0" x2="1"><stop stop-color="#f5ad62"/><stop offset="1" stop-color="#e76f51"/></linearGradient><linearGradient id="cool-flow" x1="0" x2="1"><stop stop-color="#54bfca"/><stop offset="1" stop-color="#668fe5"/></linearGradient><marker id="warm-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="none" stroke="#ed8153" stroke-width="1.5"/></marker><marker id="cool-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="none" stroke="#64a9d5" stroke-width="1.5"/></marker></defs><path class="warm-flow" d="M313 158 Q287 121 269 83" marker-end="url(#warm-arrow)"/><path class="warm-flow" d="M585 204 Q623 180 655 151" marker-end="url(#warm-arrow)"/><path class="warm-flow" d="M697 332 Q746 350 782 373" marker-end="url(#warm-arrow)"/><path class="cool-flow" d="M280 123 Q305 151 333 169" marker-end="url(#cool-arrow)"/><path class="cool-flow" d="M643 160 Q616 194 595 214" marker-end="url(#cool-arrow)"/></svg><div class="warm-stage-caption"><span class="stage-index">01</span><span id="scene-label">INVIERNO · EL CALOR BUSCA SALIR</span><span class="drag-label">arrastra para girar</span></div><div class="warm-temperature"><span id="outside-temp">4°</span><small>AFUERA</small></div></div>
+          <div class="warm-legend"><div><i class="warm-legend-dot"></i><span id="flow-legend">El calor interior escapa por las zonas débiles</span></div><span class="illustrative-label">FLUJOS CONCEPTUALES</span></div>
+        </section>
+
+        <aside class="warm-inspector" id="zonas">
+          <div class="warm-zone-head"><div><span class="warm-section-label">EXPLORA POR ZONA</span><h2>¿Qué parte miramos?</h2></div><span class="zone-count">05</span></div>
+          <p class="warm-zone-help">Elige un elemento para abrir sus capas y alternativas.</p>
+          <div id="component-select" class="component-list" role="group" aria-label="Seleccionar parte de la casa"></div>
+          <section id="component-panel" class="warm-detail" hidden><div class="warm-detail-heading"><span id="selected-component-title">Componente</span><span>CAPAS Y MEJORAS</span></div><div id="component-layers" role="group" aria-label="Capas constructivas"></div><div id="component-interventions" role="group" aria-label="Posibles mejoras"></div></section>
+          <details class="warm-dimensions"><summary>Ajustar medidas de la maqueta <span>＋</span></summary><form id="dimension-form" class="dimension-form">
+            <label>Largo (m)<input id="dim-length" name="length" type="number" min="3" max="20" step="0.5" value="8"></label><label>Ancho (m)<input id="dim-width" name="width" type="number" min="3" max="15" step="0.5" value="6"></label><label>Alto (m)<input id="dim-height" name="height" type="number" min="2" max="4" step="0.1" value="2.5"></label><label>Pendiente (°)<input id="dim-pitch" name="roofPitch" type="number" min="15" max="45" step="5" value="30"></label><label>Ventana · ancho<input id="win-width" name="winWidth" type="number" min="0.5" max="3" step="0.1" value="1.2"></label><label>Ventana · alto<input id="win-height" name="winHeight" type="number" min="0.5" max="2.5" step="0.1" value="1"></label><label>Ventanas<input id="win-count" name="winCount" type="number" min="0" max="20" value="3"></label><label>Puerta · ancho<input id="door-width" name="doorWidth" type="number" min="0.7" max="1.5" step="0.1" value="0.9"></label><label>Puerta · alto<input id="door-height" name="doorHeight" type="number" min="1.8" max="2.5" step="0.1" value="2.1"></label><label>Puertas<input id="door-count" name="doorCount" type="number" min="0" max="10" value="1"></label>
+          </form></details>
+        </aside>
+      </div>
+
+      <section class="warm-loss-section" id="mapa"><div class="loss-title"><div><span class="warm-section-label">LECTURA ORIENTATIVA</span><h2 id="chart-title">¿Dónde se escapa más calor?</h2><p id="chart-caption">Una guía visual de las zonas que suelen merecer atención.</p></div><span class="loss-info">ⓘ <span>Índice de ejemplo</span></span></div><div id="loss-chart" class="warm-loss-chart" aria-label="Índice ilustrativo por zona"></div><div class="warm-footnote">Porcentajes ilustrativos para este prototipo; no son una medición de la vivienda.</div></section>
+      <footer class="warm-footer"><span>CASA VIVA <i>·</i> PROTOTIPO DE INTERFAZ</span><span>Explora las zonas para conocer capas y mejoras <b>↓</b></span></footer>
+    </main>
+  </div>
+  <script type="module" src="modelo-prototipo.js?v=clima-05"></script>
+</body>
+</html>

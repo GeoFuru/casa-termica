@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Térmica — Mockup</title>
+<style>
+:root{
+  --bg:#f4f3ee;--surface:#fffefa;--surface-2:#eeeee7;--ink:#26312f;--muted:#78817b;
+  --line:#dedfd6;--green:#496b59;--green-soft:#e7eee8;--amber:#bd8050;--amber-soft:#f5eadf;
+  --blue:#6d8995;--blue-soft:#e8eff1;--shadow:0 12px 34px rgba(40,49,43,.06);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-size:14px}
+button{font:inherit;cursor:pointer}
+.app{min-height:100vh;display:grid;grid-template-columns:232px minmax(0,1fr)}
+.sidebar{background:#293633;color:#edf0e9;padding:27px 18px 22px;display:flex;flex-direction:column;gap:32px}
+.brand{display:flex;align-items:center;gap:11px;padding:0 8px}
+.brand-mark{width:34px;height:34px;border:1px solid #8fa596;border-radius:10px;display:grid;place-items:center;color:#dce8dd}
+.brand-mark svg{width:21px}
+.brand-name{font-size:15px;font-weight:650;letter-spacing:-.03em}
+.brand-sub{font-size:10px;color:#aebbb2;margin-top:3px;letter-spacing:.08em;text-transform:uppercase}
+.nav-label{font-size:10px;color:#9baaa0;text-transform:uppercase;letter-spacing:.13em;padding:0 10px;margin-bottom:9px}
+.nav{display:grid;gap:5px}
+.nav button{border:0;background:transparent;color:#c7d0c8;text-align:left;padding:12px 11px;border-radius:8px;display:flex;align-items:center;gap:12px;font-size:13px}
+.nav button svg{width:17px;height:17px;opacity:.8}
+.nav button.active{background:#40534a;color:#fff}
+.sidebar-note{margin-top:auto;border-top:1px solid #43514a;padding:17px 9px 0;color:#aebbb2;font-size:11px;line-height:1.6}
+.sidebar-note strong{display:block;color:#e5ebe5;font-size:11px;font-weight:600;margin-bottom:4px}
+.main{min-width:0}
+.topbar{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 38px;background:rgba(255,254,250,.75)}
+.breadcrumb{color:var(--muted);font-size:12px}.breadcrumb strong{color:var(--ink);font-weight:600}
+.top-actions{display:flex;align-items:center;gap:12px}
+.status{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px}
+.dot{width:7px;height:7px;border-radius:50%;background:#83a28b}
+.avatar{width:31px;height:31px;border-radius:50%;background:#e4e9df;color:var(--green);display:grid;place-items:center;font-size:11px;font-weight:700}
+.content{max-width:1480px;margin:0 auto;padding:35px 38px 54px}
+.page{display:none}.page.active{display:block}
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:25px;gap:20px}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--green);font-weight:700;margin-bottom:9px}
+h1{font-size:29px;letter-spacing:-.055em;font-weight:620;margin:0;color:#283430}
+.lead{color:var(--muted);font-size:13px;margin:8px 0 0;line-height:1.5}
+.button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:7px;padding:10px 14px;font-size:12px;font-weight:600}
+.button.primary{background:var(--green);border-color:var(--green);color:white}
+.button.ghost{background:transparent}
+.button svg{width:14px;vertical-align:middle;margin-right:6px}
+.sim-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(290px,.85fr);gap:18px;align-items:stretch}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;padding:17px 19px;border-bottom:1px solid var(--line)}
+.panel-title{font-size:13px;font-weight:650;letter-spacing:-.01em}
+.panel-meta{font-size:11px;color:var(--muted)}
+.model-panel{overflow:hidden;display:flex;flex-direction:column;min-height:550px}
+.model-toolbar{display:flex;gap:6px;align-items:center}
+.tool{width:29px;height:29px;border:1px solid var(--line);background:white;border-radius:6px;color:#64716a;display:grid;place-items:center}
+.tool svg{width:14px}
+.model-stage{flex:1;min-height:365px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 52% 53%,#fdfcf7 0,#f5f4ed 58%,#efeee7 100%);display:grid;place-items:center}
+.stage-grid{position:absolute;inset:0;opacity:.3;background-image:linear-gradient(rgba(125,139,128,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(125,139,128,.12) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(transparent,black 20%,black 80%,transparent)}
+.house{width:min(78%,620px);position:relative;z-index:1;filter:drop-shadow(0 20px 15px rgba(50,61,53,.13))}
+.model-caption{position:absolute;left:19px;bottom:17px;color:#7c867f;font-size:10px;letter-spacing:.04em}
+.model-badge{position:absolute;right:17px;top:16px;background:rgba(255,254,250,.88);border:1px solid var(--line);border-radius:6px;padding:7px 9px;color:var(--muted);font-size:10px}
+.legend{display:flex;gap:17px;padding:14px 19px;border-top:1px solid var(--line);flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:10px}
+.legend-swatch{width:8px;height:8px;border-radius:50%}
+.controls{display:flex;flex-direction:column;gap:13px}
+.control-panel{padding:18px}
+.section-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);font-weight:700;margin-bottom:14px}
+.component-list{display:grid;gap:7px}
+.component{display:flex;align-items:center;justify-content:space-between;padding:10px 11px;border:1px solid var(--line);border-radius:7px;background:#fff}
+.component-left{display:flex;align-items:center;gap:10px}
+.component-icon{width:29px;height:29px;border-radius:7px;background:var(--surface-2);display:grid;place-items:center;color:#62756a}
+.component-icon svg{width:15px}
+.component-name{font-size:12px;font-weight:600}.component-sub{font-size:10px;color:var(--muted);margin-top:3px}
+.switch{width:30px;height:17px;border-radius:20px;background:#d9ddd6;position:relative;flex:none}
+.switch:after{content:"";position:absolute;width:11px;height:11px;left:3px;top:3px;background:white;border-radius:50%;box-shadow:0 1px 2px #0002}
+.switch.on{background:var(--green)}.switch.on:after{left:16px}
+.control-row{display:flex;align-items:center;justify-content:space-between;margin:13px 0 8px;font-size:11px;color:var(--muted)}
+select,input[type=number]{border:1px solid var(--line);border-radius:6px;background:white;color:var(--ink);padding:8px 9px;font:inherit;font-size:11px}
+select{max-width:145px}
+.range{width:100%;accent-color:var(--green)}
+.metric-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:17px}
+.metric{padding:13px 14px;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.metric-label{font-size:10px;color:var(--muted)}.metric-value{font-size:19px;letter-spacing:-.04em;font-weight:650;margin-top:7px}.metric-note{font-size:9px;color:var(--muted);margin-top:3px}
+.notice{background:var(--blue-soft);color:#526c76;border-radius:7px;padding:11px 12px;font-size:10px;line-height:1.55;display:flex;gap:9px}
+.notice svg{width:15px;flex:none}
+.budget-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.8fr);gap:18px}
+.table-panel{overflow:hidden}
+.table-wrap{overflow:auto}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th{text-align:left;color:var(--muted);font-size:10px;font-weight:600;background:#f8f8f3;padding:13px 17px;border-bottom:1px solid var(--line)}
+td{padding:14px 17px;border-bottom:1px solid #ecece5;font-size:11px}
+td strong{font-size:12px;font-weight:600}
+.small-muted{font-size:10px;color:var(--muted);display:block;margin-top:4px}
+.money{text-align:right;font-variant-numeric:tabular-nums}
+.table-footer{padding:15px 17px;display:flex;justify-content:space-between;color:var(--muted);font-size:10px}
+.summary-panel{padding:19px}
+.total-label{font-size:11px;color:var(--muted)}
+.total{font-size:34px;letter-spacing:-.06em;font-weight:650;margin:7px 0 4px}
+.subtle{font-size:10px;color:var(--muted)}
+.breakdown{margin:22px 0 17px;display:grid;gap:13px}
+.break-row{display:flex;justify-content:space-between;font-size:11px}
+.break-row span:first-child{color:var(--muted)}
+.break-line{height:1px;background:var(--line);margin:3px 0}
+.scenario-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.scenario{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:16px}
+.scenario.selected{border-color:#73917d;box-shadow:inset 0 0 0 1px #73917d}
+.scenario-name{font-size:12px;font-weight:650}.scenario-desc{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.45}
+.scenario-price{font-size:20px;font-weight:650;letter-spacing:-.04em;margin-top:14px}
+.scenario-foot{font-size:9px;color:var(--muted);margin-top:4px}
+.report-sheet{max-width:950px;margin:0 auto;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);padding:36px 42px}
+.report-brand{display:flex;align-items:center;justify-content:space-between;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.report-brand .brand-name{font-size:13px}
+.report-id{font-size:10px;color:var(--muted)}
+.report-title{margin:28px 0 8px;font-size:27px;letter-spacing:-.05em}
+.report-intro{font-size:12px;line-height:1.65;color:var(--muted);max-width:660px}
+.report-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0}
+.report-stat{background:#f5f5ef;padding:15px;border-radius:7px}
+.report-stat span{display:block;color:var(--muted);font-size:10px}
+.report-stat strong{display:block;font-size:19px;margin-top:7px;letter-spacing:-.04em}
+.report-section{margin-top:25px}
+.report-section h2{font-size:13px;margin:0 0 12px}
+.report-section p{font-size:11px;line-height:1.65;color:#5f6b64}
+.report-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.report-item{border:1px solid var(--line);padding:12px;border-radius:7px;font-size:11px}
+.report-item strong{display:block;margin-bottom:4px}
+.report-warning{background:var(--amber-soft);color:#8c603d;border-radius:7px;padding:13px;font-size:10px;line-height:1.6;margin-top:23px}
+.report-footer{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px;margin-top:28px;color:var(--muted);font-size:9px}
+@media(max-width:1000px){.app{grid-template-columns:190px minmax(0,1fr)}.content{padding:28px 24px}.topbar{padding:0 24px}.sim-grid,.budget-layout{grid-template-columns:1fr}.controls{display:grid;grid-template-columns:1fr 1fr}.model-panel{min-height:490px}}
+@media(max-width:680px){.app{display:block}.sidebar{padding:12px 14px;gap:12px}.brand{padding:0}.sidebar .nav-label,.sidebar-note{display:none}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 10px}.topbar{height:54px;padding:0 16px}.content{padding:24px 15px 38px}.page-head{align-items:flex-start;flex-direction:column}.page-head .button{align-self:flex-start}.sim-grid{gap:12px}.model-panel{min-height:390px}.model-stage{min-height:270px}.controls{display:flex}.metric-strip,.scenario-list{grid-template-columns:1fr}.report-sheet{padding:24px 18px}.report-stats{grid-template-columns:1fr}.report-list{grid-template-columns:1fr}h1{font-size:25px}}
+@media print{body{background:white}.sidebar,.topbar,.page-head,.report-actions{display:none!important}.app{display:block}.content{padding:0;max-width:none}.page{display:none!important}#report.page{display:block!important}.report-sheet{border:0;box-shadow:none;max-width:none;padding:0}.report-warning{print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10.5 12 3l9 7.5v10H3z"/><path d="M8 20v-6h8v6M3 10.5h18"/></svg></div>
+    <div><div class="brand-name">Casa Térmica</div><div class="brand-sub">Diagnóstico y mejoras</div></div>
+  </div>
+  <div>
+    <div class="nav-label">Espacio de trabajo</div>
+    <nav class="nav">
+      <button class="active" data-page="simulator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-6h6v6"/></svg>Simulador</button>
+      <button data-page="budget"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h10M7 13h4m3 0h3"/></svg>Presupuesto</button>
+      <button data-page="report"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg>Informe</button>
+    </nav>
+  </div>
+  <div class="sidebar-note"><strong>Proyecto demostrativo</strong>Una herramienta de apoyo para comprender pérdidas térmicas y explorar alternativas de mejora en viviendas.</div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div class="breadcrumb">Casa Térmica <span style="padding:0 7px;color:#b3bbb3">/</span> <strong id="crumb">Simulador</strong></div>
+    <div class="top-actions"><div class="status"><span class="dot"></span> Escenario de ejemplo</div><div class="avatar">CT</div></div>
+  </header>
+  <div class="content">
+    <section class="page active" id="simulator">
+      <div class="page-head">
+        <div><div class="eyebrow">Exploración térmica · 01</div><h1>Conoce tu vivienda.</h1><p class="lead">Explora sus componentes y prueba cómo distintas mejoras modifican el comportamiento térmico.</p></div>
+        <button class="button ghost" id="reset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Restablecer ejemplo</button>
+      </div>
+      <div class="sim-grid">
+        <section class="panel model-panel">
+          <div class="panel-head"><div><div class="panel-title">Modelo de vivienda</div><div class="panel-meta" style="margin-top:4px">Vista exterior · Maqueta 3D</div></div><div class="model-toolbar"><button class="tool" aria-label="Vista inicial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button><button class="tool" aria-label="Acercar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M10.5 7v7m-3.5-3.5h7"/></svg></button></div></div>
+          <div class="model-stage">
+            <div class="stage-grid"></div>
+            <div class="model-badge">Vivienda de referencia · 1 piso</div>
+            <svg class="house" viewBox="0 0 660 430" role="img" aria-label="Representación conceptual de una vivienda de una planta en perspectiva tridimensional">
+              <defs>
+                <linearGradient id="wallA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4f0e5"/><stop offset="1" stop-color="#d9ded2"/></linearGradient>
+                <linearGradient id="wallB" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e5e8dd"/><stop offset="1" stop-color="#b9c8b9"/></linearGradient>
+                <linearGradient id="roof" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#788b7d"/><stop offset="1" stop-color="#50685a"/></linearGradient>
+              </defs>
+              <ellipse cx="340" cy="365" rx="245" ry="35" fill="#d8d9cf" opacity=".7"/>
+              <path d="M125 177 337 67 548 177 337 290Z" fill="url(#roof)" stroke="#42594c" stroke-width="2"/>
+              <path d="M125 177 337 290v26L125 204Z" fill="#637b6c"/>
+              <path d="M337 290 548 177v27L337 316Z" fill="#435b4d"/>
+              <path d="M164 192 337 282v75L164 265Z" fill="url(#wallA)" stroke="#aab4a7" stroke-width="1.5"/>
+              <path d="M337 282 510 192v73L337 357Z" fill="url(#wallB)" stroke="#aab4a7" stroke-width="1.5"/>
+              <path d="M164 192 337 102 510 192 337 282Z" fill="#f8f6ed" opacity=".0"/>
+              <path d="M164 192 337 102 510 192" fill="none" stroke="#d6ddd2" stroke-width="2"/>
+              <path d="M205 211 205 278 263 308 263 241Z" fill="#8ba1a1" stroke="#6e898d" stroke-width="2"/>
+              <path d="M213 216 213 273 255 294 255 237Z" fill="#dce8e7"/>
+              <path d="M233 226v68M213 245l42 21" stroke="#8ba1a1" stroke-width="2"/>
+              <path d="M365 298 365 350 420 321 420 269Z" fill="#8d7158" stroke="#735c49" stroke-width="2"/>
+              <path d="M375 303 375 342 410 324 410 284Z" fill="#c4a98b"/>
+              <circle cx="402" cy="315" r="2.5" fill="#725d49"/>
+              <path d="M448 224 448 279 480 262 480 207Z" fill="#8ba1a1" stroke="#6e898d" stroke-width="2"/>
+              <path d="M454 226 454 270 474 259 474 215Z" fill="#dce8e7"/>
+              <path d="M337 282v75" stroke="#a4b1a5" stroke-width="1.5"/>
+              <path d="M164 265 337 357 510 265" fill="none" stroke="#aab4a7" stroke-width="2"/>
+              <path d="M125 177 337 67 548 177" fill="none" stroke="#3f5849" stroke-width="3"/>
+              <path d="M292 91 337 67 382 91" fill="none" stroke="#a8b7a8" stroke-width="1.5" opacity=".7"/>
+              <path d="M140 181 140 204M533 183v22" stroke="#9cae9e" stroke-width="3"/>
+              <path d="M337 357 337 383" stroke="#aeb8aa" stroke-width="2"/>
+              <path d="M120 383 337 397 555 383" fill="none" stroke="#c6c9be" stroke-width="1.5"/>
+              <g fill="none" stroke="#c48a5c" stroke-width="3" stroke-linecap="round" opacity=".9">
+                <path d="M278 145q-17-17-5-31"/><path d="m267 116 7-4 2 8"/>
+                <path d="M470 158q18-14 8-29"/><path d="m477 126 2-8 7 4"/>
+              </g>
+              <g fill="#c48a5c"><circle cx="273" cy="109" r="3"/><circle cx="482" cy="125" r="3"/></g>
+            </svg>
+            <div class="model-caption">Representación conceptual · No corresponde a un levantamiento real</div>
+          </div>
+          <div class="legend"><div class="legend-item"><span class="legend-swatch" style="background:#c48a5c"></span>Transferencia de calor</div><div class="legend-item"><span class="legend-swatch" style="background:#8ba1a1"></span>Aberturas</div><div class="legend-item"><span class="legend-swatch" style="background:#66816f"></span>Envolvente</div></div>
+        </section>
+        <div class="controls">
+          <section class="panel control-panel">
+            <div class="section-kicker">Componentes de la vivienda</div>
+            <div class="component-list">
+              <div class="component"><div class="component-left"><div class="component-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 11 9-7 9 7M5 10v10h14V10"/></svg></div><div><div class="component-name">Techumbre</div><div class="component-sub">Cubierta y cielo</div></div></div><span class="switch on"></span></div>
+              <div class="component"><div class="component-left"><div class="component-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h14v18H5zM9 3v18m6-18v18"/></svg></div><div><div class="component-name">Muros</div><div class="component-sub">Envolvente vertical</div></div></div><span class="switch on"></span></div>
+              <div class="component"><div class="component-left"><div class="component-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M12 5v14M3 12h18"/></svg></div><div><div class="component-name">Ventanas</div><div class="component-sub">Aberturas y marcos</div></div></div><span class="switch"></span></div>
+              <div class="component"><div class="component-left"><div class="component-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V3h14v18M9 21V8h6v13"/><circle cx="13" cy="15" r=".7" fill="currentColor"/></svg></div><div><div class="component-name">Puertas</div><div class="component-sub">Sellos e infiltraciones</div></div></div><span class="switch"></span></div>
+              <div class="component"><div class="component-left"><div class="component-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 17 9-5 9 5-9 5zM3 12l9-5 9 5M3 7l9-5 9 5"/></svg></div><div><div class="component-name">Piso</div><div class="component-sub">Superficie inferior</div></div></div><span class="switch"></span></div>
+            </div>
+            <div class="control-row"><span>Visualización</span><select><option>Rutas de pérdida térmica</option><option>Capas constructivas</option><option>Vista general</option></select></div>
+          </section>
+          <section class="panel control-panel">
+            <div class="section-kicker">Condiciones de referencia</div>
+            <div class="control-row"><span>Temperatura interior</span><strong>20 °C</strong></div><input class="range" type="range" min="15" max="25" value="20">
+            <div class="control-row"><span>Temperatura exterior</span><strong>5 °C</strong></div><input class="range" type="range" min="-5" max="12" value="5">
+            <div class="control-row"><span>Intervención activa</span><span style="color:var(--green);font-weight:650">2 de 5</span></div>
+            <button class="button primary" style="width:100%;margin-top:10px" data-goto="budget">Revisar presupuesto <span style="float:right">→</span></button>
+          </section>
+        </div>
+      </div>
+      <div class="metric-strip">
+        <div class="metric"><div class="metric-label">Pérdidas relativas</div><div class="metric-value">Media</div><div class="metric-note">Indicador comparativo ilustrativo</div></div>
+        <div class="metric"><div class="metric-label">Intervenciones activas</div><div class="metric-value">2 / 5</div><div class="metric-note">Componentes con mejoras</div></div>
+        <div class="metric"><div class="metric-label">Inversión estimada</div><div class="metric-value">$486.000</div><div class="metric-note">CLP · Valores demostrativos</div></div>
+      </div>
+      <div class="notice" style="margin-top:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg><span>Las rutas e indicadores son representaciones didácticas. No constituyen mediciones, simulación energética profesional ni diagnóstico certificado.</span></div>
+    </section>
+
+    <section class="page" id="budget">
+      <div class="page-head">
+        <div><div class="eyebrow">Materiales y costos · 02</div><h1>Planifica las mejoras.</h1><p class="lead">Revisa cantidades, materiales y costos estimados para las intervenciones seleccionadas.</p></div>
+        <button class="button primary" id="budgetExport">↓ Exportar presupuesto</button>
+      </div>
+      <div class="budget-layout">
+        <section class="panel table-panel">
+          <div class="panel-head"><div><div class="panel-title">Desglose de materiales</div><div class="panel-meta" style="margin-top:4px">Escenario equilibrado · Valores de ejemplo</div></div><span class="badge" style="font-size:10px;color:#8a704f;background:#f5eadf;padding:6px 8px;border-radius:5px">Demostrativo</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Intervención</th><th>Cantidad</th><th>Material / solución</th><th class="money">Subtotal</th></tr></thead><tbody>
+            <tr><td><strong>Aislación de techumbre</strong><span class="small-muted">Cielo y cubierta</span></td><td>42 m²</td><td>Lana mineral<span class="small-muted">Paquetes · cobertura referencial</span></td><td class="money">$218.000</td></tr>
+            <tr><td><strong>Aislación de muros</strong><span class="small-muted">Muros perimetrales</span></td><td>31 m²</td><td>Aislante térmico<span class="small-muted">Formato de demostración</span></td><td class="money">$164.000</td></tr>
+            <tr><td><strong>Sellado de puertas</strong><span class="small-muted">Control de infiltraciones</span></td><td>2 un.</td><td>Burletes y sellos<span class="small-muted">Kit referencial</span></td><td class="money">$34.000</td></tr>
+            <tr><td><strong>Mano de obra</strong><span class="small-muted">Instalación estimada</span></td><td>—</td><td>Servicio referencial</td><td class="money">$70.000</td></tr>
+          </tbody></table></div>
+          <div class="table-footer"><span>4 conceptos incluidos</span><span>Montos expresados en CLP</span></div>
+        </section>
+        <aside class="panel summary-panel">
+          <div class="section-kicker">Resumen de inversión</div><div class="total-label">Total estimado</div><div class="total">$486.000</div><div class="subtle">Pesos chilenos · Escenario equilibrado</div>
+          <div class="breakdown"><div class="break-row"><span>Materiales</span><strong>$416.000</strong></div><div class="break-row"><span>Mano de obra</span><strong>$70.000</strong></div><div class="break-row"><span>Otros costos</span><strong>$0</strong></div><div class="break-line"></div><div class="break-row"><strong>Total</strong><strong>$486.000</strong></div></div>
+          <div class="notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg><span>Los precios son referenciales para esta demostración. Deben actualizarse con cotizaciones verificadas antes de una compra.</span></div>
+        </aside>
+      </div>
+      <div style="margin-top:26px"><div class="section-kicker">Comparar alternativas</div><div class="scenario-list">
+        <div class="scenario"><div class="scenario-name">Económica</div><div class="scenario-desc">Prioriza intervenciones puntuales de menor inversión.</div><div class="scenario-price">$252.000</div><div class="scenario-foot">Inversión estimada · CLP</div></div>
+        <div class="scenario selected"><div class="scenario-name">Equilibrada <span style="color:var(--green);font-size:9px;margin-left:5px">ACTUAL</span></div><div class="scenario-desc">Combina mejoras de envolvente y control de infiltraciones.</div><div class="scenario-price">$486.000</div><div class="scenario-foot">Inversión estimada · CLP</div></div>
+        <div class="scenario"><div class="scenario-name">Integral</div><div class="scenario-desc">Considera un conjunto más amplio de intervenciones.</div><div class="scenario-price">$795.000</div><div class="scenario-foot">Inversión estimada · CLP</div></div>
+      </div></div>
+      <div class="notice" style="margin-top:17px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg><span>Las alternativas son configuraciones de ejemplo, no recomendaciones universales. Las cantidades y precios dependen de las dimensiones, materiales y condiciones reales de la vivienda.</span></div>
+    </section>
+
+    <section class="page" id="report">
+      <div class="page-head report-actions">
+        <div><div class="eyebrow">Síntesis del proyecto · 03</div><h1>Informe de resultados.</h1><p class="lead">Una ficha clara para revisar y comunicar la configuración seleccionada.</p></div>
+        <button class="button primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+      </div>
+      <article class="report-sheet">
+        <div class="report-brand"><div class="brand"><div class="brand-mark" style="background:#293633"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10.5 12 3l9 7.5v10H3z"/><path d="M8 20v-6h8v6"/></svg></div><div><div class="brand-name">Casa Térmica</div><div class="brand-sub" style="color:var(--muted)">Diagnóstico y mejoras</div></div></div><div class="report-id">INFORME DE DEMOSTRACIÓN · CT-001</div></div>
+        <h2 class="report-title">Resumen de acondicionamiento térmico</h2>
+        <p class="report-intro">Evaluación exploratoria de una vivienda de referencia de una planta. Este documento resume las intervenciones seleccionadas, sus cantidades estimadas y el presupuesto asociado al escenario actual.</p>
+        <div class="report-stats"><div class="report-stat"><span>Alternativa seleccionada</span><strong>Equilibrada</strong></div><div class="report-stat"><span>Inversión estimada</span><strong>$486.000</strong></div><div class="report-stat"><span>Intervenciones activas</span><strong>2 de 5</strong></div></div>
+        <section class="report-section"><h2>01 — Configuración de referencia</h2><p>Vivienda genérica de una planta. La representación visual permite identificar componentes de la envolvente y explorar intervenciones de forma conceptual. Las dimensiones y cantidades deben corresponder a los datos ingresados en el proyecto.</p></section>
+        <section class="report-section"><h2>02 — Intervenciones consideradas</h2><div class="report-list"><div class="report-item"><strong>Aislación de techumbre</strong>Mejora de la resistencia térmica de la cubierta.</div><div class="report-item"><strong>Aislación de muros</strong>Incorporación de material aislante en la envolvente.</div><div class="report-item"><strong>Sellado de puertas</strong>Reducción de infiltraciones no controladas.</div><div class="report-item"><strong>Revisión de aberturas</strong>Evaluación de ventanas y encuentros.</div></div></section>
+        <section class="report-section"><h2>03 — Resumen económico</h2><table><tbody><tr><td>Materiales</td><td class="money">$416.000</td></tr><tr><td>Mano de obra</td><td class="money">$70.000</td></tr><tr><td><strong>Total estimado</strong></td><td class="money"><strong>$486.000</strong></td></tr></tbody></table></section>
+        <section class="report-section"><h2>04 — Observaciones</h2><p>Antes de ejecutar mejoras se recomienda verificar el estado de la estructura, la presencia de humedad, la ventilación, la compatibilidad de los materiales y las condiciones de instalación. Las soluciones deben evaluarse según las características particulares de cada vivienda.</p></section>
+        <div class="report-warning"><strong>Alcance y limitaciones.</strong> Este informe es una demostración orientativa. Los indicadores térmicos son ilustrativos y no corresponden a mediciones ni a una simulación energética validada. Los precios son demostrativos y no representan cotizaciones comerciales vigentes. No constituye diagnóstico ni certificación energética.</div>
+        <div class="report-footer"><span>Casa Térmica · Herramienta de apoyo para exploración de mejoras</span><span>Documento demostrativo</span></div>
+      </article>
+    </section>
+  </div>
+</main>
+</div>
+<script>
+const pages = [...document.querySelectorAll('.page')];
+const navButtons = [...document.querySelectorAll('.nav button')];
+const labels = {simulator:'Simulador',budget:'Presupuesto',report:'Informe'};
+function showPage(id){
+  pages.forEach(page=>page.classList.toggle('active',page.id===id));
+  navButtons.forEach(button=>button.classList.toggle('active',button.dataset.page===id));
+  document.getElementById('crumb').textContent=labels[id];
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+navButtons.forEach(button=>button.addEventListener('click',()=>showPage(button.dataset.page)));
+document.querySelectorAll('[data-goto]').forEach(button=>button.addEventListener('click',()=>showPage(button.dataset.goto)));
+document.getElementById('reset').addEventListener('click',()=>{
+  document.querySelectorAll('.switch').forEach((el,index)=>el.classList.toggle('on',index<2));
+});
+document.getElementById('budgetExport').addEventListener('click',()=>{
+  const csv='Concepto,Cantidad,Subtotal CLP\nAislación de techumbre,42 m2,218000\nAislación de muros,31 m2,164000\nSellado de puertas,2 unidades,34000\nMano de obra,Referencial,70000\nTotal,,486000';
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);const link=document.createElement('a');
+  link.href=url;link.download='casa-termica-presupuesto-demo.csv';link.click();URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
