@@ -1,8 +1,39 @@
+
+# Operating system
 .DS_Store
 .directory
 Thumbs.db
-**/prototipos/
-**/vendor/
-**/src/
-**/private/
-**/assets/
+Desktop.ini
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+dist/
+build/
+out/
+*.o
+*.obj
+*.dll
+*.so
+*.exe
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Private data
+private/
