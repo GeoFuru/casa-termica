@@ -23,13 +23,23 @@ function bootstrap() {
   if (["budget", "report", "impact"].includes(requestedView)) document.getElementById(`${requestedView}-tab`)?.click();
   document.getElementById("review-budget")?.addEventListener("click", () => document.getElementById("budget-tab")?.click());
   document.querySelectorAll("#dimension-form input").forEach(input => { input.required = true; });
-  const houseView = createHouse3DView(document.getElementById("house-3d-canvas"));
-  houseView.polar = 1.2;
-  houseView.target.y = 1.2;
-  houseView.materials.ground.color.set("#f7f6fb");
-  houseView.fitCameraToHouse(getState().dimensions);
-  houseView.updateCamera();
-  houseView.render();
+  try {
+    const houseView = createHouse3DView(document.getElementById("house-3d-canvas"));
+    houseView.polar = 1.2;
+    houseView.target.y = 1.2;
+    houseView.materials.ground.color.set("#f7f6fb");
+    houseView.fitCameraToHouse(getState().dimensions);
+    houseView.updateCamera();
+    houseView.render();
+  } catch (error) {
+    console.warn("3D view unavailable; continuing without WebGL:", error);
+    const canvas = document.getElementById("house-3d-canvas");
+    if (canvas) {
+      canvas.setAttribute("role", "status");
+      canvas.textContent = "La vista 3D no está disponible en este dispositivo. Puedes seguir usando el simulador, los presupuestos y el informe.";
+      canvas.classList.add("house-canvas-unavailable");
+    }
+  }
   initAuraDashboard();
   initImpactView();
   initHouseConfigurator();
